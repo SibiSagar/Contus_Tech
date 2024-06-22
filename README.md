@@ -6,7 +6,7 @@ This project provides APIs to manage project assignments to users and retrieve l
 
 ## Database Design
 
-![Alt Text](Contus_Tech/ContusApplication/db_schema.png)
+![Alt Text](https://github.com/SibiSagar/Contus_Tech/blob/master/ContusApplication/db_schema.png)
 
 ## APIs Provided
 
