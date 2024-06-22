@@ -4,6 +4,10 @@
 
 This project provides APIs to manage project assignments to users and retrieve lists of users and places based on assigned project counts.
 
+## Database Design
+
+![Alt Text](Contus_Tech/ContusApplication/db_schema.png)
+
 ## APIs Provided
 
 ### Users Controller
