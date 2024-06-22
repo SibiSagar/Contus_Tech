@@ -16,36 +16,49 @@ import com.api.contusapplication.dto.PlaceProjectCount;
 import com.api.contusapplication.dto.UsersProjectCount;
 import com.api.contusapplication.model.UserRequest;
 import com.api.contusapplication.service.UsersService;
-
-/*
-c) GET API: List places - place,  assigned_project_count  (order based on place count)
- */
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@Log4j2
 public class UsersController {
     
     @Autowired
     private UsersService usersService;
 
-    //For adding new user
+    /**
+     * Saves a user by receiving a UserRequest object in the request body and
+     * delegating the saving operation to the UsersService.
+     *
+     * @param  userRequest  the UserRequest object containing the user data to be saved
+     */
     @PostMapping
     public void saveUser(@RequestBody UserRequest userRequest) {
+        log.info("UserRequest: " + userRequest + " received");
         usersService.saveUser(userRequest);
 
     }
 
-    //GET API: List users - user_name, assigned_project_count  (order based on assigned project count)
+    /**
+     * Retrieves a list of UsersProjectCount objects representing the count of assigned projects for each user.
+     *
+     * @return ResponseEntity<List<UsersProjectCount>> representing the list of UsersProjectCount objects.
+     */
     @GetMapping("/users-project-count")
     public ResponseEntity<List<UsersProjectCount>> findByUsersWithAssignedProjectCount() {
-
+        log.info("UsersProjectCount list retrieved: " + this.usersService.findByUsersWithAssignedProjectCount()  );
        return new ResponseEntity<>( this.usersService.findByUsersWithAssignedProjectCount(),HttpStatus.OK);
         
     }
 
+    /**
+     * Retrieves a list of place-project counts based on assigned projects.
+     *
+     * @return ResponseEntity<List<PlaceProjectCount>> representing the place-project counts.
+     */
     @GetMapping("/place-project-count")
     public ResponseEntity<List<PlaceProjectCount>> findbyPlaceWithAssignedProjectCount(){
-
+        log.info("PlaceProjectCount list retrieved: " + this.usersService.findbyPlaceWithAssignedProjectCount()  );
         return new ResponseEntity<>( this.usersService.findbyPlaceWithAssignedProjectCount(),HttpStatus.OK);
 
     }
